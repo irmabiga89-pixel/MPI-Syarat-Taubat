@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Interaktif: Syarat-Syarat Taubat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'soft-pink': '#ffd1dc',
+                        'soft-cream': '#fffdd0',
+                        'dark-text': '#4a4a4a',
+                        'accent-pink': '#ff9a9e',
+                        'success': '#a8e6cf',
+                        'error': '#ffaaa5'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #fffdd0 0%, #ffd1dc 100%);
+            color: #4a4a4a;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden-section {
+            display: none;
+        }
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 154, 158, 0.4);
+        }
+        .draggable {
+            cursor: grab;
+        }
+        .draggable:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            transition: background-color 0.3s;
+        }
+        .drop-zone.hover {
+            background-color: rgba(255, 154, 158, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased pb-20 sm:pb-10">
+
+    <nav class="glass-card sticky top-0 z-50 p-4 mb-6">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Profile Avatar Muslimah Syar'i Pink (Cartoon Style) -->
+                <div class="w-10 h-10 rounded-full bg-pink-100 border-2 border-accent-pink overflow-hidden flex-shrink-0 flex items-center justify-center shadow-md">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <defs>
+                            <radialGradient id="clayPinkNav" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#fbcfe8" />
+                                <stop offset="55%" stop-color="#f472b6" />
+                                <stop offset="100%" stop-color="#db2777" />
+                            </radialGradient>
+                            <radialGradient id="claySkinNav" cx="40%" cy="30%" r="60%">
+                                <stop offset="0%" stop-color="#fff7ed" />
+                                <stop offset="100%" stop-color="#fed7aa" />
+                            </radialGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="50" fill="#fce7f3"/>
+                        <!-- Syar'i Hijab Pink Drape -->
+                        <path d="M 12 98 C 8 48, 20 8, 50 8 C 80 8, 92 48, 88 98 C 72 102, 28 102, 12 98 Z" fill="url(#clayPinkNav)"/>
+                        <!-- Inner Face Base -->
+                        <ellipse cx="50" cy="45" rx="18" ry="20" fill="url(#claySkinNav)"/>
+                        <!-- Syar'i Hijab Frame Around Face -->
+                        <path d="M 26 24 C 36 16, 64 16, 74 24 C 80 36, 78 58, 74 76 C 60 84, 40 84, 26 76 C 22 58, 20 36, 26 24 Z" fill="url(#clayPinkNav)"/>
+                        <!-- Cheeks -->
+                        <ellipse cx="38" cy="48" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3"/>
+                        <ellipse cx="62" cy="48" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3"/>
+                        <!-- Eyes -->
+                        <ellipse cx="40" cy="42" rx="2.8" ry="3.8" fill="#0f172a"/>
+                        <ellipse cx="60" cy="42" rx="2.8" ry="3.8" fill="#0f172a"/>
+                        <circle cx="41" cy="40.8" r="1" fill="#ffffff"/>
+                        <circle cx="61" cy="40.8" r="1" fill="#ffffff"/>
+                        <!-- Eyebrows -->
+                        <path d="M 35 36 Q 40 33 45 36" stroke="#1e293b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        <path d="M 55 36 Q 60 33 65 36" stroke="#1e293b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        <!-- Smile -->
+                        <path d="M 44 52 Q 50 57 56 52" stroke="#be185d" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-accent-pink">Modul Akidah Akhlak</h1>
+                    <p class="text-xs font-semibold text-gray-500">Kelas X - Fase E (Kanwil Kemenag Gorontalo)</p>
+                </div>
+            </div>
+            <i class="fas fa-book-open text-2xl text-accent-pink"></i>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4">
+        
+        <section id="section-home" class="fade-in">
+            <div class="glass-card rounded-3xl p-8 text-center mb-6">
+                <!-- Profile Picture Display (Cartoon Muslimah Syar'i Pink) -->
+                <div class="inline-block relative mb-4">
+                    <div class="w-36 h-36 rounded-full bg-pink-100 border-4 border-white shadow-xl overflow-hidden mx-auto flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <defs>
+                                <radialGradient id="clayPinkHero" cx="35%" cy="25%" r="75%">
+                                    <stop offset="0%" stop-color="#fbcfe8" />
+                                    <stop offset="45%" stop-color="#f472b6" />
+                                    <stop offset="85%" stop-color="#db2777" />
+                                    <stop offset="100%" stop-color="#9d174d" />
+                                </radialGradient>
+                                <radialGradient id="claySkinHero" cx="40%" cy="30%" r="60%">
+                                    <stop offset="0%" stop-color="#fff7ed" />
+                                    <stop offset="70%" stop-color="#fed7aa" />
+                                    <stop offset="100%" stop-color="#f97316" />
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- Background Glow Circle -->
+                            <circle cx="50" cy="50" r="50" fill="#fce7f3"/>
+                            
+                            <!-- Syar'i Pink Hijab Back & Drape -->
+                            <path d="M 10 98 C 6 48, 18 8, 50 8 C 82 8, 94 48, 90 98 C 72 103, 28 103, 10 98 Z" fill="url(#clayPinkHero)"/>
+                            
+                            <!-- Highlights & Drape Details on Hijab -->
+                            <path d="M 30 16 C 42 11, 58 11, 70 16 C 58 12, 42 12, 30 16 Z" fill="#ffffff" opacity="0.5"/>
+                            <path d="M 18 70 C 22 85, 30 95, 35 98 C 25 90, 18 80, 18 70 Z" fill="#be185d" opacity="0.3"/>
+                            <path d="M 82 70 C 78 85, 70 95, 65 98 C 75 90, 82 80, 82 70 Z" fill="#be185d" opacity="0.3"/>
+
+                            <!-- Inner Face Base -->
+                            <ellipse cx="50" cy="44" rx="19" ry="21" fill="url(#claySkinHero)"/>
+                            
+                            <!-- Syar'i Hijab Frame Around Face -->
+                            <path d="M 25 22 C 36 14, 64 14, 75 22 C 82 35, 80 58, 75 76 C 60 85, 40 85, 25 76 C 20 58, 18 35, 25 22 Z" fill="url(#clayPinkHero)"/>
+                            <path d="M 28 24 C 38 17, 62 17, 72 24" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+                            <!-- Cute Rosy Cheeks -->
+                            <ellipse cx="37" cy="48" rx="4.5" ry="3" fill="#f43f5e" opacity="0.35"/>
+                            <ellipse cx="63" cy="48" rx="4.5" ry="3" fill="#f43f5e" opacity="0.35"/>
+
+                            <!-- Expressive Cartoon Eyes -->
+                            <ellipse cx="41" cy="40" rx="3.5" ry="4.5" fill="#020617"/>
+                            <ellipse cx="59" cy="40" rx="3.5" ry="4.5" fill="#020617"/>
+                            <!-- Double Catchlights for Gloss Effect -->
+                            <circle cx="42.5" cy="38.5" r="1.5" fill="#ffffff"/>
+                            <circle cx="39.5" cy="41.5" r="0.8" fill="#ffffff"/>
+                            <circle cx="60.5" cy="38.5" r="1.5" fill="#ffffff"/>
+                            <circle cx="57.5" cy="41.5" r="0.8" fill="#ffffff"/>
+
+                            <!-- Cute Eyebrows & Eyelashes -->
+                            <path d="M 34 33 Q 41 29 47 33" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <path d="M 53 33 Q 59 29 66 33" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <path d="M 35 37 Q 33 35 32 37" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                            <path d="M 65 37 Q 67 35 68 37" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+                            <!-- Warm Friendly Smile -->
+                            <path d="M 42 53 Q 50 60 58 53" stroke="#be185d" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <span class="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-white shadow-sm" title="Pembimbing Aktif"></span>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-2">Kembali ke Jalan yang Benar: Hakikat & Syarat Taubat</h2>
+                <p class="text-xs font-semibold text-accent-pink uppercase tracking-widest mb-4">Pengampu & Pembimbing Akidah Akhlak</p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    Halo sahabat madrasah! Setiap manusia pasti pernah berbuat salah, namun sebaik-baik orang yang bersalah adalah mereka yang bertaubat. Mari kita pelajari syarat-syarat taubat yang benar, baik kepada Allah Swt. maupun kepada sesama manusia.
+                </p>
+                <button onclick="showSection('section-materi')" class="btn-hover bg-accent-pink text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">
+                    Mulai Belajar <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 <div class="glass-card rounded-2xl p-5 border-l-4 border-accent-pink">
+                    <h3 class="font-bold text-lg mb-2"><i class="fas fa-bullseye mr-2"></i>Tujuan Belajar</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1">
+                        <li>Merinci syarat-syarat taubat kepada Allah.</li>
+                        <li>Merinci syarat taubat yang berkaitan dengan sesama manusia.</li>
+                        <li>Berani dan bertanggung jawab meminta maaf (Cinta Sesama).</li>
+                    </ul>
+                </div>
+                <div class="glass-card rounded-2xl p-5 border-l-4 border-blue-300">
+                    <h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Konteks Gorontalo</h3>
+                    <p class="text-sm">Di lingkungan masyarakat Gorontalo yang menjunjung tinggi falsafah <em>Adati Hula-hula'a To Sara'a, Sara'a Hula-hula'a To Kuru'ani</em>, meminta maaf dan memperbaiki hubungan sesama adalah cerminan akhlak mulia yang nyata.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-materi" class="hidden-section fade-in">
+            <div class="mb-4 flex justify-between items-center">
+                <button onclick="showSection('section-home')" class="text-gray-500 hover:text-accent-pink font-semibold">
+                    <i class="fas fa-chevron-left mr-1"></i> Kembali
+                </button>
+                <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-accent-pink shadow-sm">Materi Inti</span>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8 mb-6">
+                <h2 class="text-2xl font-bold mb-4 border-b-2 border-soft-pink pb-2">Pengertian Taubat</h2>
+                <p class="mb-4 text-justify">
+                    Secara bahasa, taubat berasal dari kata <em>taaba</em> yang berarti <strong>kembali</strong>. Secara istilah, taubat adalah kembali dari perbuatan dosa menuju taat kepada Allah disertai penyesalan atas semua dosa yang telah dilakukan.
+                </p>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8 border-b-2 border-soft-pink pb-2">Syarat Taubat kepada Allah Swt.</h2>
+                <p class="mb-4 text-sm text-gray-600">Jika dosa yang dilakukan murni urusan hamba dengan Allah (misal: meninggalkan shalat, minum khamr), maka syarat taubatnya ada tiga:</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-white p-4 rounded-xl shadow-sm text-center border-t-4 border-accent-pink">
+                        <div class="text-3xl mb-2">🛑</div>
+                        <h3 class="font-bold mb-2">1. Meninggalkan</h3>
+                        <p class="text-sm">Berhenti seketika dari perbuatan dosa dan maksiat tersebut.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm text-center border-t-4 border-accent-pink">
+                        <div class="text-3xl mb-2">😭</div>
+                        <h3 class="font-bold mb-2">2. Menyesali</h3>
+                        <p class="text-sm">Menyesal sedalam-dalamnya di dalam hati atas dosa yang telah diperbuat.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm text-center border-t-4 border-accent-pink">
+                        <div class="text-3xl mb-2">✊</div>
+                        <h3 class="font-bold mb-2">3. Bertekad Kuat</h3>
+                        <p class="text-sm">Berjanji dengan sungguh-sungguh untuk tidak mengulangi kesalahan itu lagi.</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-4 mt-8 border-b-2 border-soft-pink pb-2">Syarat Taubat Berkaitan dengan Sesama Manusia</h2>
+                <p class="mb-4 text-sm text-gray-600">Jika dosa menyangkut hak atau menyakiti sesama manusia (misal: ghibah, mencuri, memfitnah), maka syaratnya adalah <strong>Tiga syarat di atas DITAMBAH satu syarat lagi:</strong></p>
+                
+                <div class="bg-soft-cream p-5 rounded-2xl border-2 border-dashed border-orange-300 flex flex-col sm:flex-row items-center gap-4">
+                    <div class="text-5xl text-orange-400"><i class="fas fa-handshake"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">4. Membebaskan Diri dari Hak Manusia</h3>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li><strong>Jika berupa harta:</strong> Wajib dikembalikan kepada pemiliknya (atau ahli warisnya).</li>
+                            <li><strong>Jika berupa kehormatan (fitnah/ghibah/menyakiti):</strong> Wajib meminta maaf secara langsung kepada orang yang bersangkutan hingga ia ridha/ikhlas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="showSection('section-interaktif')" class="btn-hover bg-accent-pink text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">
+                        Coba Simulasi Interaktif <i class="fas fa-gamepad ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-interaktif" class="hidden-section fade-in">
+            <div class="mb-4 flex justify-between items-center">
+                <button onclick="showSection('section-materi')" class="text-gray-500 hover:text-accent-pink font-semibold">
+                    <i class="fas fa-chevron-left mr-1"></i> Materi
+                </button>
+                <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-accent-pink shadow-sm">Simulasi Kasus</span>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8 mb-6">
+                <h2 class="text-2xl font-bold mb-2 text-center">Bantu Rian Bertaubat!</h2>
+                <p class="text-center text-sm mb-6">Pilih tindakan yang tepat sesuai kasus agar taubatnya diterima.</p>
+
+                <!-- Kasus Interaktif -->
+                <div class="bg-white p-5 rounded-2xl shadow-inner mb-6 border border-gray-200">
+                    <p class="font-semibold text-lg mb-2">Kasus:</p>
+                    <p class="italic text-gray-700 bg-gray-50 p-3 rounded-lg">"Rian adalah siswa MA di Kota Gorontalo. Suatu hari karena kesal, ia memfitnah temannya, Budi, menyontek saat ujian. Budi dimarahi guru. Kini Rian merasa bersalah dan ingin bertaubat."</p>
+                </div>
+
+                <p class="font-bold mb-3">Pilih langkah terakhir yang PALING PENTING (Syarat ke-4) agar taubat Rian sempurna:</p>
+                
+                <div class="space-y-3" id="interactive-options">
+                    <button onclick="checkKasus(this, false, 'Masih kurang tepat. Memperbanyak istighfar itu baik, tapi dosa fitnah menyangkut hak kehormatan manusia. Ada hal yang harus diselesaikan langsung dengan Budi.')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-accent-pink hover:bg-soft-pink transition duration-200 bg-white">
+                        A. Memperbanyak dzikir dan shalat sunnah taubat di masjid setiap malam.
+                    </button>
+                    <button onclick="checkKasus(this, false, 'Kurang tepat. Mentraktir teman memang baik, tapi tidak menghapus kesalahan fitnah jika tidak ada pernyataan maaf yang jelas terkait kesalahan tersebut.')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-accent-pink hover:bg-soft-pink transition duration-200 bg-white">
+                        B. Mentraktir Budi makan di kantin madrasah tanpa membahas masalah fitnah.
+                    </button>
+                    <button onclick="checkKasus(this, true, 'Tepat Sekali! Karena ini dosa kepada sesama, syarat utamanya adalah meminta maaf (membebaskan hak) dari orang yang didzalimi. Rian harus berani dan bertanggung jawab menemui Budi.')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-accent-pink hover:bg-soft-pink transition duration-200 bg-white">
+                        C. Datang langsung kepada Budi, mengakui kesalahan fitnah tersebut, dan meminta maaf hingga Budi ikhlas memaafkan.
+                    </button>
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="feedback-kasus" class="hidden mt-6 p-4 rounded-xl border-2 transition-all duration-300 text-center font-medium">
+                    <!-- Pesan feedback muncul di sini -->
+                </div>
+
+                <div id="next-to-quiz" class="hidden mt-8 text-center">
+                    <button onclick="showSection('section-kuis')" class="btn-hover bg-gradient-to-r from-accent-pink to-pink-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">
+                        Lanjut ke Evaluasi <i class="fas fa-tasks ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-kuis" class="hidden-section fade-in">
+             <div class="mb-4 flex justify-between items-center">
+                <button onclick="showSection('section-interaktif')" class="text-gray-500 hover:text-accent-pink font-semibold">
+                    <i class="fas fa-chevron-left mr-1"></i> Simulasi
+                </button>
+                <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-accent-pink shadow-sm">Kuis Formatif</span>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8 mb-6">
+                <div id="quiz-intro" class="text-center">
+                    <h2 class="text-2xl font-bold mb-2">Uji Pemahamanmu!</h2>
+                    <p class="mb-6 text-sm text-gray-600">Isi data diri kamu sebelum memulai evaluasi agar hasil belajar tersimpan otomatis ke database guru.</p>
+
+                    <form id="student-form" onsubmit="handleStartQuiz(event)" class="max-w-md mx-auto text-left space-y-4 mb-6 bg-white p-5 rounded-2xl shadow-sm border border-pink-100">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1"><i class="fas fa-user text-accent-pink mr-1"></i> Nama Lengkap Siswa</label>
+                            <input type="text" id="student-name" required placeholder="Contoh: Siti Rahmah Mohamad" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-accent-pink text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1"><i class="fas fa-graduation-cap text-accent-pink mr-1"></i> Kelas / Rombel</label>
+                            <input type="text" id="student-class" required placeholder="Contoh: X MA 1 / Fase E" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-accent-pink text-sm">
+                        </div>
+                        <div class="pt-3 border-t border-dashed border-gray-200">
+                            <label class="block text-xs font-semibold text-gray-500 mb-1 flex items-center justify-between">
+                                <span><i class="fas fa-database text-pink-400 mr-1"></i> URL Google Apps Script Web App</span>
+                            </label>
+                            <input type="url" id="gas-url-input" value="https://script.google.com/macros/s/AKfycbyO5iwbmFn2G9PfCeHlq8IvhHWd-7BoyCH7pFTpjAfnHyXGurJpEE1K41gmrZS3PTrb/exec" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs bg-gray-50 focus:outline-none focus:border-accent-pink">
+                            <p class="text-[10px] text-gray-400 mt-1">URL Database terisi otomatis secara default.</p>
+                        </div>
+                        <button type="submit" class="w-full btn-hover bg-accent-pink text-white font-bold py-3 rounded-xl text-lg shadow-lg mt-2 flex items-center justify-center">
+                            <span>Mulai Kuis</span> <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="quiz-container" class="hidden">
+                    <div class="bg-pink-50 p-3 rounded-xl mb-4 flex justify-between items-center text-xs font-semibold text-gray-600 border border-pink-100">
+                        <div><i class="fas fa-user-circle text-accent-pink mr-1"></i> <span id="display-student-name">Siswa</span> (<span id="display-student-class">Kelas</span>)</div>
+                        <div class="text-accent-pink"><i class="fas fa-database mr-1"></i> Auto-Sync Database</div>
+                    </div>
+
+                    <div class="flex justify-between text-sm font-bold text-gray-500 mb-4 border-b pb-2">
+                        <span id="q-counter">Soal 1 / 5</span>
+                        <span id="q-score">Skor: 0</span>
+                    </div>
+                    
+                    <h3 id="question-text" class="text-lg font-bold mb-4 text-dark-text min-h-[4rem]">Pertanyaan...</h3>
+                    
+                    <div id="options-container" class="space-y-3">
+                        <!-- Options generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Hasil Kuis -->
+                <div id="quiz-result" class="hidden text-center">
+                    <div id="score-circle" class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-white border-8 border-accent-pink text-4xl font-bold text-accent-pink mb-4 shadow-lg">
+                        100
+                    </div>
+                    <h2 id="result-message" class="text-2xl font-bold mb-1">Luar Biasa!</h2>
+                    <p id="student-result-info" class="text-sm font-semibold text-gray-600 mb-4">Siswa: - | Kelas: -</p>
+                    
+                    <!-- Notification Sync status database -->
+                    <div id="db-status-badge" class="mb-6 inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800 border border-yellow-300">
+                        <i class="fas fa-spinner fa-spin mr-2"></i> Menyimpan hasil pengerjaan ke database Google Sheets...
+                    </div>
+
+                    <p class="mb-4 text-gray-600 text-sm font-semibold border-t pt-4">Pembahasan Soal:</p>
+                    
+                    <div id="pembahasan-container" class="text-left space-y-4 mb-6 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        <!-- Pembahasan digenerate oleh JS -->
+                    </div>
+
+                    <div class="flex justify-center gap-3">
+                        <button onclick="resetQuiz()" class="btn-hover bg-gray-800 text-white font-bold py-2.5 px-6 rounded-full shadow-md text-sm">
+                            <i class="fas fa-redo mr-2"></i>Ulangi Kuis
+                        </button>
+                        <button onclick="showSection('section-home')" class="btn-hover bg-accent-pink text-white font-bold py-2.5 px-6 rounded-full shadow-md text-sm">
+                            <i class="fas fa-home mr-2"></i>Beranda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-gray-500 text-sm mt-8 pb-4">
+        <p>&copy; 2026 Modul Akidah Akhlak - Kanwil Kemenag Provinsi Gorontalo</p>
+        <p>Terintegrasi dengan Database Google Sheets & Apps Script</p>
+    </footer>
+
+    <script>
+        // Masukkan URL Google Apps Script Web App default di bawah ini jika ingin langsung terhubung tanpa input manual
+        let GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyO5iwbmFn2G9PfCeHlq8IvhHWd-7BoyCH7pFTpjAfnHyXGurJpEE1K41gmrZS3PTrb/exec"; 
+
+        // Data Identitas Siswa
+        let studentData = {
+            nama: "",
+            kelas: ""
+        };
+
+        // --- Navigation Logic ---
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(sec => {
+                sec.classList.add('hidden-section');
+            });
+            const target = document.getElementById(sectionId);
+            target.classList.remove('hidden-section');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Interactive Case Logic ---
+        function checkKasus(btn, isCorrect, feedbackMsg) {
+            const btns = document.querySelectorAll('#interactive-options button');
+            btns.forEach(b => {
+                b.classList.remove('bg-green-100', 'border-green-400', 'bg-red-100', 'border-red-400', 'text-white');
+                b.classList.add('bg-white');
+            });
+
+            const feedbackDiv = document.getElementById('feedback-kasus');
+            const nextBtn = document.getElementById('next-to-quiz');
+
+            feedbackDiv.classList.remove('hidden', 'bg-success', 'border-green-500', 'bg-error', 'border-red-500');
+
+            if (isCorrect) {
+                btn.classList.remove('bg-white');
+                btn.classList.add('bg-green-100', 'border-green-400');
+                feedbackDiv.classList.add('bg-success', 'border-green-500', 'text-green-800');
+                feedbackDiv.innerHTML = `<i class="fas fa-check-circle mr-2"></i> ${feedbackMsg}`;
+                nextBtn.classList.remove('hidden');
+            } else {
+                btn.classList.remove('bg-white');
+                btn.classList.add('bg-red-100', 'border-red-400');
+                feedbackDiv.classList.add('bg-error', 'border-red-500', 'text-red-800');
+                feedbackDiv.innerHTML = `<i class="fas fa-times-circle mr-2"></i> ${feedbackMsg}`;
+            }
+        }
+
+        // --- Quiz & Database Integration Logic ---
+        const defaultQuizData = [
+            {
+                question: "Syarat taubat bagi seseorang yang berbuat dosa murni kepada Allah (seperti meninggalkan shalat) terdiri dari tiga hal, kecuali...",
+                options: ["A. Berhenti dari kemaksiatan seketika itu juga", "B. Menyesali perbuatan dosanya", "C. Meminta maaf kepada tetangga sekitar", "D. Bertekad kuat tidak akan mengulangi kesalahan"],
+                answer: 2,
+                pembahasan: "Jika dosa hanya antara hamba dan Allah, syaratnya 3: Meninggalkan, Menyesali, dan Bertekad tidak mengulangi. Meminta maaf kepada manusia baru wajib jika dosanya berkaitan dengan hak orang lain."
+            },
+            {
+                question: "Andi meminjam sepeda motor temannya dan tanpa sengaja merusaknya. Ia menyesal dan bertaubat. Syarat taubat yang harus dipenuhi Andi kepada temannya adalah...",
+                options: ["A. Cukup beristighfar setiap selesai shalat", "B. Mengganti kerusakan atau meminta keikhlasan (maaf) dari temannya", "C. Berjanji dalam hati tidak akan meminjam motor lagi", "D. Mendoakan temannya dari jauh agar mendapat rezeki berlimpah"],
+                answer: 1,
+                pembahasan: "Dosa merusak barang orang lain menyangkut hak manusia. Syarat ke-4 taubatnya adalah membebaskan diri dari hak tersebut, yaitu dengan mengganti kerusakan atau meminta keikhlasan/maaf dari pemiliknya."
+            },
+            {
+                question: "Urutan logis syarat taubat yang benar ketika seseorang menyadari telah berbuat dosa adalah...",
+                options: ["A. Berjanji tidak mengulangi, lalu menyesal", "B. Meminta maaf, kemudian baru menyadari kesalahan", "C. Menyesali perbuatan, berhenti dari maksiat, lalu bertekad tidak mengulangi", "D. Menutupi dosa dengan perbuatan baik tanpa perlu menyesal"],
+                answer: 2,
+                pembahasan: "Taubat diawali dengan penyesalan di dalam hati (menyadari kesalahan), lalu secara tindakan berhenti dari maksiat, dan terakhir membulatkan tekad untuk tidak mengulanginya di masa depan."
+            },
+            {
+                question: "Pernyataan di bawah ini yang menunjukkan sikap tanggung jawab moral seorang murid ketika berbuat salah kepada temannya (sesuai tuntunan taubat) adalah...",
+                options: ["A. Pura-pura lupa agar tidak merasa malu", "B. Menyuruh teman lain untuk menyampaikan permintaan maaf", "C. Berani datang langsung, mengakui kesalahan, dan meminta maaf", "D. Menunggu temannya yang menyapa duluan"],
+                answer: 2,
+                pembahasan: "Sikap berani dan bertanggung jawab (cinta sesama) ditunjukkan dengan berani menghadapi kenyataan, mengakui kesalahan secara jantan/langsung, dan meminta maaf kepada orang yang disakiti."
+            },
+            {
+                question: "Mengapa taubat yang berkaitan dengan hak sesama manusia dianggap lebih sulit penyelesaiannya dibandingkan dosa kepada Allah semata?",
+                options: ["A. Karena Allah Maha Pengampun, sedangkan manusia kadang sulit memaafkan dan haknya harus diselesaikan di dunia.", "B. Karena dosanya dilipatgandakan oleh malaikat", "C. Karena harus melakukan shalat taubat selama 40 malam", "D. Karena manusia selalu mengingat kesalahan orang lain selamanya"],
+                answer: 0,
+                pembahasan: "Allah Maha Pengampun dan Penerima Taubat. Namun, jika menyangkut manusia, taubat bergantung pada keikhlasan orang yang didzalimi. Jika belum dimaafkan di dunia, maka akan dituntut di akhirat."
+            }
+        ];
+
+        let quizData = [...defaultQuizData];
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        function handleStartQuiz(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('student-name').value.trim();
+            const classInput = document.studentForm?.['student-class'] ? document.getElementById('student-class').value.trim() : document.getElementById('student-class').value.trim();
+            const urlInput = document.getElementById('gas-url-input').value.trim();
+
+            if (!nameInput || !classInput) {
+                alert('Silakan lengkapi Nama dan Kelas terlebih dahulu.');
+                return;
+            }
+
+            studentData.nama = nameInput;
+            studentData.kelas = classInput;
+
+            if (urlInput) {
+                GAS_WEB_APP_URL = urlInput;
+            }
+
+            document.getElementById('display-student-name').innerText = studentData.nama;
+            document.getElementById('display-student-class').innerText = studentData.kelas;
+
+            startQuiz();
+        }
+
+        function startQuiz() {
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('q-counter').innerText = `Soal ${currentQuestion + 1} / ${quizData.length}`;
+            document.getElementById('q-score').innerText = `Skor Sementara: ${Math.round((score / quizData.length) * 100)}`;
+            document.getElementById('question-text').innerText = q.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-accent-pink hover:bg-soft-pink transition duration-200 bg-white";
+                btn.innerText = opt;
+                btn.onclick = () => selectAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(index, btnEl) {
+            const buttons = document.querySelectorAll('#options-container button');
+            buttons.forEach(b => b.disabled = true);
+            
+            userAnswers.push(index);
+            const correctIndex = quizData[currentQuestion].answer;
+
+            if (index === correctIndex) {
+                btnEl.classList.replace('border-gray-200', 'border-green-500');
+                btnEl.classList.replace('bg-white', 'bg-green-100');
+                score++;
+            } else {
+                btnEl.classList.replace('border-gray-200', 'border-red-500');
+                btnEl.classList.replace('bg-white', 'bg-red-100');
+                buttons[correctIndex].classList.replace('border-gray-200', 'border-green-500');
+                buttons[correctIndex].classList.add('bg-green-50');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1200);
+        }
+
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            const finalScore = Math.round((score / quizData.length) * 100);
+            const correctCount = score;
+            const incorrectCount = quizData.length - score;
+
+            const circle = document.getElementById('score-circle');
+            circle.innerText = finalScore;
+            
+            document.getElementById('student-result-info').innerText = `Siswa: ${studentData.nama} | Kelas: ${studentData.kelas}`;
+
+            const msg = document.getElementById('result-message');
+            if (finalScore >= 80) {
+                msg.innerText = "Luar Biasa! Pemahamanmu Sangat Baik.";
+                circle.className = "inline-flex items-center justify-center w-32 h-32 rounded-full bg-white border-8 border-green-400 text-green-500 text-4xl font-bold mb-4 shadow-lg";
+            } else if (finalScore >= 60) {
+                msg.innerText = "Cukup Baik. Mari pelajari lagi bagian yang salah.";
+                circle.className = "inline-flex items-center justify-center w-32 h-32 rounded-full bg-white border-8 border-yellow-400 text-yellow-600 text-4xl font-bold mb-4 shadow-lg";
+            } else {
+                msg.innerText = "Jangan Menyerah. Ayo baca kembali materinya!";
+                circle.className = "inline-flex items-center justify-center w-32 h-32 rounded-full bg-white border-8 border-red-400 text-red-500 text-4xl font-bold mb-4 shadow-lg";
+            }
+
+            // Generate Pembahasan
+            const pembContainer = document.getElementById('pembahasan-container');
+            pembContainer.innerHTML = '';
+            
+            // Format rincian jawaban untuk dikirim ke Google Sheets
+            let detailAnswersString = "";
+
+            quizData.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.answer;
+                const icon = isCorrect ? '<i class="fas fa-check text-green-500"></i>' : '<i class="fas fa-times text-red-500"></i>';
+                
+                const optLetter = userChoice !== undefined ? String.fromCharCode(65 + userChoice) : "-";
+                detailAnswersString += `[Soal ${idx + 1}: ${optLetter} (${isCorrect ? 'Benar' : 'Salah'})] `;
+
+                const html = `
+                    <div class="bg-gray-50 p-3 rounded-lg border-l-4 ${isCorrect ? 'border-green-500' : 'border-red-500'}">
+                        <p class="font-bold text-sm mb-1">Soal ${idx + 1} ${icon}</p>
+                        <p class="text-xs text-gray-700 mb-1">${q.question}</p>
+                        <p class="text-xs font-semibold text-gray-600 mb-1">Jawaban Kamu: <span class="${isCorrect ? 'text-green-700 font-bold' : 'text-red-600 font-bold'}">${q.options[userChoice] || 'Tidak diisi'}</span></p>
+                        <p class="text-xs font-semibold bg-blue-100 inline-block px-2 py-0.5 rounded text-blue-800">Pembahasan:</p>
+                        <p class="text-xs mt-1 text-gray-600">${q.pembahasan}</p>
+                    </div>
+                `;
+                pembContainer.innerHTML += html;
+            });
+
+            // Kirim Data Hasil Evaluasi Siswa ke Google Apps Script / Google Sheets Database
+            sendDataToGoogleSheets({
+                nama: studentData.nama,
+                kelas: studentData.kelas,
+                score: finalScore,
+                correctCount: correctCount,
+                incorrectCount: incorrectCount,
+                detailAnswers: detailAnswersString
+            });
+        }
+
+        function sendDataToGoogleSheets(payload) {
+            const badge = document.getElementById('db-status-badge');
+            
+            if (!GAS_WEB_APP_URL) {
+                badge.className = "mb-6 inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-gray-100 text-gray-700 border border-gray-300";
+                badge.innerHTML = `<i class="fas fa-info-circle mr-2 text-blue-500"></i> Hasil ditampilkan secara lokal (URL Database belum dikonfigurasi).`;
+                return;
+            }
+
+            badge.className = "mb-6 inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800 border border-yellow-300";
+            badge.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim hasil pengerjaan ke database Google Sheets...`;
+
+            fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Mencegah blokir CORS untuk Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                badge.className = "mb-6 inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-300";
+                badge.innerHTML = `<i class="fas fa-check-circle mr-2 text-green-600"></i> Hasil evaluasi ${payload.nama} (${payload.kelas}) berhasil tersimpan di Google Sheets!`;
+            })
+            .catch(error => {
+                console.error("Gagal mengirim data:", error);
+                badge.className = "mb-6 inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-red-100 text-red-800 border border-red-300";
+                badge.innerHTML = `<i class="fas fa-exclamation-triangle mr-2 text-red-600"></i> Gagal terhubung ke database. Hasil tetap tersimpan secara lokal.`;
+            });
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-intro').classList.remove('hidden');
+            const circle = document.getElementById('score-circle');
+            circle.className = "inline-flex items-center justify-center w-32 h-32 rounded-full bg-white border-8 border-accent-pink text-4xl font-bold text-accent-pink mb-4 shadow-lg";
+        }
+    </script>
+</body>
+</html>
